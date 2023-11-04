@@ -67,8 +67,8 @@ class UserLogin extends Component {
 				        <a href="https://www.google.com/" className="social"><i className="fab fa-linkedin-in"></i></a>
 			        </div>
 			        <span>or use your account</span>
-			        <input type="username" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/>
-			        <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
+			        <input type="username" placeholder="Username" value={this.state.username} onChange={this.handleUsername} required/>
+			        <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword} required/>
 			        <a href="https://www.google.com/">Forgot your password?</a>
 			        <button onClick={(this.state.isValid) ? this.props.enableTodoPage : this.handleSubmit}>Sign In</button>
 		        </form>

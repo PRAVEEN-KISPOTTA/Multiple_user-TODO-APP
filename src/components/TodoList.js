@@ -61,6 +61,7 @@ class TodoList extends Component {
                 value={this.state.todo}
                 placeholder="What else you want to do..."
                 onChange={this.handleInput}
+                required
               />
             </Div>
 

@@ -16,9 +16,9 @@ class UserRegistration extends Component {
 				      <a href="https://www.google.com/" className="social"><i className="fab fa-linkedin-in"></i></a>
 			      </div>
 			      <span>or use your username for registration</span>
-			      <input type="text" placeholder="Name" value={this.props.name} onChange={this.props.handleName}/>
-			      <input type="text" placeholder="Usename" value={this.props.username} onChange={this.props.handleUsername}/>
-			      <input type="password" placeholder="Password" value={this.props.password} onChange={this.props.handlePassword}/>
+			      <input type="text" placeholder="Name" value={this.props.name} onChange={this.props.handleName} required/>
+			      <input type="text" placeholder="Usename" value={this.props.username} onChange={this.props.handleUsername} required/>
+			      <input type="password" placeholder="Password" value={this.props.password} onChange={this.props.handlePassword} required/>
             <input type="password" placeholder="Confirm Password" value={this.props.confirmPassword} onChange={this.props.handleConfirmPassword}/>
 			      <button>Sign Up</button>
 		      </form>

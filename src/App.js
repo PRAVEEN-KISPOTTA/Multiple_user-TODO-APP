@@ -1,12 +1,14 @@
 import {Component} from "react";
 import UserRegistration from "./components/UserRegistration";
 import UserLogin from "./components/UserLogin";
+import TodoList from "./components/TodoList";
 
 class App extends Component{
   constructor(){
     super();
     this.state = {
       toggle: false,
+      loginPage: false,
       name: "",
       username: "",
       password: "",
@@ -18,6 +20,12 @@ class App extends Component{
   handleToggle =(event)=>{
     this.setState({
       toggle: !this.state.toggle
+    })
+  }
+
+  handleTodoPage=()=>{
+    this.setState({
+      loginPage: !this.state.loginPage
     })
   }
 
@@ -87,22 +95,23 @@ class App extends Component{
   render(){
     return(
       <div>
-        <h1>Welcome to ReactJs</h1>
-        {(!this.state.toggle) ? <UserLogin loginToggle={this.handleToggle}
-                                           username={this.state.username}
-                                           password={this.state.password}
-                                           userDetails={this.state.userDetails}/> : 
+        {(this.state.loginPage) ? <TodoList /> : 
+                (!this.state.toggle) ? <UserLogin loginToggle={this.handleToggle}
+                username={this.state.username}
+                password={this.state.password}
+                userDetails={this.state.userDetails}
+                enableTodoPage={this.handleTodoPage}/> : 
 
-                                <UserRegistration regToggle={this.handleToggle}
-                                                  handleName={this.handleName}
-                                                  handleUsername={this.handleUsername}
-                                                  handlePassword={this.handlePassword}
-                                                  handleConfirmPassword={this.handleConfirmPassword}
-                                                  handleSubmit={this.handleSubmit}
-                                                  name={this.state.name}
-                                                  username={this.state.username}
-                                                  password={this.state.password}
-                                                  confirmPassword={this.state.confirmPassword}/>}
+     <UserRegistration regToggle={this.handleToggle}
+                       handleName={this.handleName}
+                       handleUsername={this.handleUsername}
+                       handlePassword={this.handlePassword}
+                       handleConfirmPassword={this.handleConfirmPassword}
+                       handleSubmit={this.handleSubmit}
+                       name={this.state.name}
+                       username={this.state.username}
+                       password={this.state.password}
+                       confirmPassword={this.state.confirmPassword}/>}
       </div>
     )
   }

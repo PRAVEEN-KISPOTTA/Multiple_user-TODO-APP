@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Script from "./Script";
 
 import "./style.css"
 
@@ -9,7 +8,8 @@ class UserLogin extends Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            isValid: false
         }
     }
     
@@ -25,28 +25,35 @@ class UserLogin extends Component {
         })
     }
 
-    handleSubmit=(e)=>{
-        e.preventDefault();
-        console.log(this.state);
-
-        const user = {
-          username: this.state.username,
-          password: this.state.password
-        };
-
-        if(this.props.userDetails.some((u)=> u.username === user.username && u.password === user.password)){
-          console.log("you are logged in");
-          <Script />
-        }
-        else{
-          alert("incorrect details");
-        }
-
-        this.setState({
-          username: "",
-          password: ""
-        })
+    handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(this.state);
+    
+      const user = {
+        username: this.state.username,
+        password: this.state.password
+      };
+    
+      if (this.props.userDetails.some((u) => u.username === user.username && u.password === user.password)) {
+        this.setState(
+          {
+            isValid: !this.state.isValid
+          },
+          () => {
+            console.log("you are logged in");
+            console.log(this.state.isValid); // This will log the updated isValid state
+          }
+        );
+      } else {
+        alert("incorrect details");
+      }
+    
+      this.setState({
+        username: "",
+        password: ""
+      });
     }
+    
 
   render() {
     return (
@@ -63,7 +70,7 @@ class UserLogin extends Component {
 			        <input type="username" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/>
 			        <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
 			        <a href="https://www.google.com/">Forgot your password?</a>
-			        <button>Sign In</button>
+			        <button onClick={(this.state.isValid) ? this.props.enableTodoPage : this.handleSubmit}>Sign In</button>
 		        </form>
 	        </div>
 
